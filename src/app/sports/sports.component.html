@@ -1,0 +1,52 @@
+<mat-vertical-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <ng-template matStepLabel><label>Select Sports</label></ng-template>
+    <mat-form-field>
+        <mat-select placeholder="Select Sports" [(value)]="selectedSport">
+          <mat-option *ngFor="let sport of sports" value="{{sport.name}}">
+            {{sport.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    <div>
+      <button mat-button matStepperNext class="btn btn-primary">Next</button>
+   </div>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel><label>Select Venue</label></ng-template>
+    <mat-form-field>
+      <mat-select placeholder="Select Sports Venue" [(value)]="selectedVenue">
+        <mat-option *ngFor="let venue of sportsVenue" value="{{venue.name}}">
+          {{venue.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext class="btn btn-primary">Next</button>
+    </div>
+</mat-step>
+<mat-step [stepControl]="thirdFormGroup">
+  <ng-template matStepLabel><label>Select Time Slot</label></ng-template>
+  <mat-form-field>
+    <mat-select placeholder="Select Time Slot of Venue" [(value)]="selectedTimeslot">
+      <mat-option *ngFor="let timeSlot of timeSlots" value="{{timeSlot.slot}}">
+        {{timeSlot.slot}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext class="btn btn-primary">Next</button>
+    </div>
+</mat-step>
+<mat-step [stepControl]="finalFormGroup">
+    <ng-template matStepLabel><label>Confirm Booking</label></ng-template>
+    {{confirmStatus}}
+    <div>
+        <button mat-button (click)="confirmBooking()">Confirm</button>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+  </mat-step>
+</mat-vertical-stepper>
